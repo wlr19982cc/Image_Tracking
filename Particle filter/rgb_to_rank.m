@@ -4,18 +4,18 @@ function [H,S,V]=rgb_to_rank(I)
 [h,s,v] = rgb2hsv(I);
 %颜色（值0-1）
 H = h;
+h = h*360; 
 %纯度（值0-1）
 S = s;
 %亮度（值0-1）
 V = v;
-h = h*360; 
+
 %将HSV空间非等间隔量化
 % h量化成46级
 % s量化成4级
 % v量化成4级
 for i = 1:M
-    for j = 1:N
-
+    for j = 1:N        
 %H子空间
         if h(i,j)>=0&&h(i,j)<10
             H(i,j)=0;
@@ -77,8 +77,7 @@ for i = 1:M
         if h(i,j)>=190&&h(i,j)<200
             H(i,j)=19;
         end
-        
-        
+                
         if h(i,j)>=200&&h(i,j)<205
             H(i,j)=20;
         end
@@ -139,6 +138,7 @@ for i = 1:M
         if h(i,j)>=295&&h(i,j)<300
             H(i,j)=39;
         end
+        
         if h(i,j)>=300&&h(i,j)<310
             H(i,j)=40;
         end
@@ -188,6 +188,7 @@ for i = 1:M
         if v(i,j)>=0.75&&v(i,j)<=1
             V(i,j) = 3;
         end
+        
     end
 end
 
